@@ -19,6 +19,7 @@
     "test:hook": "jest --silent --watchAll=false",
     "start": "craco start",
     "build": "craco build",
+    "build-to-branch": "node ./scripts/build-to-branch.js",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -74,6 +75,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "execa": "^5.0.0",
     "husky": "^5.2.0",
     "identity-obj-proxy": "^3.0.0",
     "lint-staged": "^10.5.4",

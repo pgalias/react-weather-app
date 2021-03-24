@@ -3,3 +3,4 @@ jest.config.js
 craco.config.js
 tailwind.config.js
 src/setupTests.ts
+scripts/*

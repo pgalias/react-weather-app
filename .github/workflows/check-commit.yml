@@ -1,0 +1,19 @@
+name: Build
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Run linter
+        run: yarn lint
+      - name: Run test
+        run: yarn test:unit
+      - name: Build application
+        if: github.ref == 'refs/heads/master'
+        run: |
+          git config user.name pgalias && git config user.email pawel@galias.me
+          yarn build-to-branch
