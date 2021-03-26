@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorCreator should render correct message for cannot_resolve_localization error 1`] = `
+<div
+  role="alert"
+>
+  Your browser or system seems to be blocking geolocation fetching. Please check the necessary permissions.
+</div>
+`;
+
+exports[`ErrorCreator should render correct message for incorrect_data error 1`] = `
+<div
+  role="alert"
+>
+  Passed latitude and/or longitude may be incorrect. Please check them and try again.
+</div>
+`;
+
+exports[`ErrorCreator should render correct message for internal_server_error error 1`] = `
+<div
+  role="alert"
+>
+  Cannot fetch forecast data now. Please try again in a minute.
+</div>
+`;
+
+exports[`ErrorCreator should render correct message for out_to_date_browser error 1`] = `
+<div
+  role="alert"
+>
+  Your browser is stale. Please download newer one. You can find the list of compatible browsers here https://developer.mozilla.org/en-US/docs/Web/API/Navigator/geolocation#browser_compatibility
+</div>
+`;
+
+exports[`ErrorCreator should render correct message for unknown_error error 1`] = `
+<div
+  role="alert"
+>
+  Something goes wrong. Please try again in a minute.
+</div>
+`;
