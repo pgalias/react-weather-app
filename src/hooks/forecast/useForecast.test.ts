@@ -1,0 +1,72 @@
+import { renderHook } from '@testing-library/react-hooks';
+import { useForecast } from './useForecast';
+import { Location } from '../../models';
+import { Forecast } from '../../models/forecast';
+import {
+  LocalizationException,
+  LocalizationExceptionType,
+} from '../../services/location/exceptions';
+import { getLocation } from '../../services/location';
+import { getForecast } from '../../services/weather';
+import { WeatherException, WeatherExceptionType } from '../../services/weather/exceptions';
+
+jest.mock('../../services/location', () => ({
+  getLocation: jest.fn(),
+}));
+
+jest.mock('../../services/weather', () => ({
+  getForecast: jest.fn(),
+}));
+
+describe('useForecast', () => {
+  const location: Location = { latitude: 12, longitude: 65 };
+  const forecast: Forecast = {
+    units: { windSpeed: 'm/s' },
+    timeseries: [
+      {
+        symbolCode: 'cloudy',
+        time: new Date('2021-03-23T21:00:00Z'),
+        details: { windSpeed: 21 },
+      },
+    ],
+  };
+
+  test('should return forecast and localization data when promises resolved', async () => {
+    (getLocation as jest.Mock).mockResolvedValue(location);
+    (getForecast as jest.Mock).mockResolvedValue(forecast);
+
+    const { result, waitForNextUpdate } = renderHook(() => useForecast());
+
+    await waitForNextUpdate();
+    const hookResult = await result.current;
+
+    expect(hookResult).toEqual([forecast, location, undefined]);
+  });
+
+  test('should return error when cannot resolve localization', async () => {
+    (getLocation as jest.Mock).mockRejectedValue(LocalizationException.cannotResolveLocalization());
+
+    const { result, waitForNextUpdate } = renderHook(() => useForecast());
+
+    await waitForNextUpdate();
+    const hookResult = await result.current;
+
+    expect(hookResult).toEqual([
+      undefined,
+      undefined,
+      LocalizationExceptionType.CANNOT_RESOLVE_LOCALIZATION,
+    ]);
+  });
+
+  test('should return error when cannot resolve forecast', async () => {
+    (getLocation as jest.Mock).mockResolvedValue(location);
+    (getForecast as jest.Mock).mockRejectedValue(WeatherException.unknownError());
+
+    const { result, waitForNextUpdate } = renderHook(() => useForecast());
+
+    await waitForNextUpdate();
+    const hookResult = await result.current;
+
+    expect(hookResult).toEqual([undefined, undefined, WeatherExceptionType.UNKNOWN_ERROR]);
+  });
+});
