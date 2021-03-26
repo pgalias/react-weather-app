@@ -17,8 +17,9 @@
   "scripts": {
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "eslint src/**/*.ts{,x}",
-    "test": "jest",
-    "test:hook": "jest --silent --watchAll=false",
+    "test": "react-scripts test --watchAll=false --coverage",
+    "test:watch": "react-scripts test",
+    "test:hook": "react-scripts test --silent --watchAll=false",
     "start": "craco start",
     "build": "craco build",
     "build-to-branch": "node ./scripts/build-to-branch.js",
@@ -85,5 +86,32 @@
     "prettier": "^2.2.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "ts-jest": "^26.5.4"
+  },
+  "jest": {
+    "clearMocks": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts?(x)",
+      "!src/index.tsx",
+      "!src/**/*.d.ts",
+      "!src/reportWebVitals.ts",
+      "!src/**/*.mock.ts",
+      "!src/**/test*",
+      "!src/**/mock/**.*",
+      "!src/models/*.ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/", "/coverage/"
+    ],
+    "coverageReporters": [
+      "html", "text", "lcov", "text-summary"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 74,
+        "functions": 74,
+        "lines": 80,
+        "statements": 80
+      }
+    }
   }
 }
