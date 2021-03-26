@@ -1,5 +1,6 @@
 import { cloneDeep } from 'lodash';
 import { getLocation } from './get-location';
+import { LocalizationException } from './exceptions';
 
 describe('getLocation', () => {
   const navigator = cloneDeep(global.navigator);
@@ -33,12 +34,14 @@ describe('getLocation', () => {
       getCurrentPosition: jest.fn().mockImplementationOnce((_, fail) => Promise.reject(fail())),
     };
 
-    return expect(getLocation()).rejects.toBeUndefined();
+    return expect(getLocation()).rejects.toThrowError(
+      LocalizationException.cannotResolveLocalization(),
+    );
   });
 
   test('should reject when geolocation is unsupported', () => {
     (global.navigator.geolocation as unknown) = undefined;
 
-    return expect(getLocation()).rejects.toBeUndefined();
+    return expect(getLocation()).rejects.toThrowError(LocalizationException.outToDateBrowser());
   });
 });
