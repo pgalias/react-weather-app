@@ -10,15 +10,17 @@ import { WeatherException, WeatherExceptionType } from '../../services/weather/e
 import { Location } from '../../models';
 
 type Error = LocalizationExceptionType | WeatherExceptionType;
-type ReturnType = [Forecast?, Location?, Error?];
+type ReturnType = [boolean, Forecast?, Location?, Error?];
 
 export const useForecast = (): ReturnType => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [location, setLocation] = useState<Location>();
   const [forecast, setForecast] = useState<Forecast>();
   const [error, setError] = useState<Error>();
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const receivedLocation = await getLocation();
         const receivedForecast = await getForecast(receivedLocation);
@@ -29,11 +31,13 @@ export const useForecast = (): ReturnType => {
         if (e instanceof LocalizationException || e instanceof WeatherException) {
           setError(e.type);
         }
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  return [forecast, location, error];
+  return [loading, forecast, location, error];
 };

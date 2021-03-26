@@ -31,6 +31,12 @@ describe('useForecast', () => {
     ],
   };
 
+  test('should inform about loading information before resolved data', () => {
+    const { result } = renderHook(() => useForecast());
+
+    expect(result.current).toEqual([true, undefined, undefined, undefined]);
+  });
+
   test('should return forecast and localization data when promises resolved', async () => {
     (getLocation as jest.Mock).mockResolvedValue(location);
     (getForecast as jest.Mock).mockResolvedValue(forecast);
@@ -38,9 +44,8 @@ describe('useForecast', () => {
     const { result, waitForNextUpdate } = renderHook(() => useForecast());
 
     await waitForNextUpdate();
-    const hookResult = await result.current;
 
-    expect(hookResult).toEqual([forecast, location, undefined]);
+    expect(result.current).toEqual([false, forecast, location, undefined]);
   });
 
   test('should return error when cannot resolve localization', async () => {
@@ -49,9 +54,9 @@ describe('useForecast', () => {
     const { result, waitForNextUpdate } = renderHook(() => useForecast());
 
     await waitForNextUpdate();
-    const hookResult = await result.current;
 
-    expect(hookResult).toEqual([
+    expect(result.current).toEqual([
+      false,
       undefined,
       undefined,
       LocalizationExceptionType.CANNOT_RESOLVE_LOCALIZATION,
@@ -65,8 +70,12 @@ describe('useForecast', () => {
     const { result, waitForNextUpdate } = renderHook(() => useForecast());
 
     await waitForNextUpdate();
-    const hookResult = await result.current;
 
-    expect(hookResult).toEqual([undefined, undefined, WeatherExceptionType.UNKNOWN_ERROR]);
+    expect(result.current).toEqual([
+      false,
+      undefined,
+      undefined,
+      WeatherExceptionType.UNKNOWN_ERROR,
+    ]);
   });
 });
