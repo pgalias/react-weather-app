@@ -10,6 +10,7 @@ module.exports = {
     '!src/**/*.mock.ts',
     '!src/**/test*',
     '!src/**/mock/**.*',
+    '!src/models/*.ts',
   ],
   coveragePathIgnorePatterns: ['/node_modules/', '/coverage/'],
   coverageReporters: ['html', 'text', 'lcov', 'text-summary'],
