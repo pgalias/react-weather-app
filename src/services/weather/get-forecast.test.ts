@@ -2,10 +2,14 @@ import axios from 'axios';
 import { getForecast } from './get-forecast';
 import { Response } from './response-mapper';
 import { Forecast } from '../../models/forecast';
+import { WeatherException } from './exceptions';
+import { Location } from '../../models';
 
 jest.mock('axios');
 
 describe('getForecast', () => {
+  const location: Location = { latitude: 12, longitude: 54 };
+
   test('should receive forecast data from the endpoint', () => {
     // Given API Endpoint response
     const response: Response = {
@@ -79,6 +83,32 @@ describe('getForecast', () => {
       ],
     };
 
-    return expect(getForecast({ latitude: 12, longitude: 54 })).resolves.toEqual(mappedResponse);
+    return expect(getForecast(location)).resolves.toEqual(mappedResponse);
+  });
+
+  describe('error handling', () => {
+    test('should throw internal server error when server error occurred', () => {
+      ((axios.get as unknown) as jest.Mock).mockRejectedValue({ response: { status: 500 } });
+
+      return expect(getForecast(location)).rejects.toThrowError(
+        WeatherException.internalServerError(),
+      );
+    });
+
+    test('should throw incorrect data error when passed data is incorrect', () => {
+      ((axios.get as unknown) as jest.Mock).mockRejectedValue({
+        response: { status: 400, data: 'incorrect data passed' },
+      });
+
+      return expect(getForecast(location)).rejects.toThrowError(
+        WeatherException.incorrectData('incorrect data passed'),
+      );
+    });
+
+    test('should throw unknown error when status is other than 400+ and 500+', () => {
+      ((axios.get as unknown) as jest.Mock).mockRejectedValue({ response: {} });
+
+      return expect(getForecast(location)).rejects.toThrowError(WeatherException.unknownError());
+    });
   });
 });
