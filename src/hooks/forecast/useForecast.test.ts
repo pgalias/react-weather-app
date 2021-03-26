@@ -32,9 +32,11 @@ describe('useForecast', () => {
   };
 
   test('should inform about loading information before resolved data', () => {
+    global.console.error = jest.fn(() => ''); // surpassing act warning because cannot fix it
     const { result } = renderHook(() => useForecast());
 
     expect(result.current).toEqual([true, undefined, undefined, undefined]);
+    (global.console.error as jest.Mock).mockRestore();
   });
 
   test('should return forecast and localization data when promises resolved', async () => {
