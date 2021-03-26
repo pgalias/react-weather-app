@@ -1,0 +1,9 @@
+.loader-container {
+    @apply w-auto inline-block;
+}
+
+.loader {
+    @apply inline-block;
+
+    animation-duration: 7s;
+}

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader component should match snapshot 1`] = `
+<div
+  aria-busy="true"
+  class="loaderContainer"
+  role="alert"
+>
+  <span
+    class="loader animate-spin"
+  >
+    <span>
+      loading icon
+    </span>
+  </span>
+</div>
+`;
