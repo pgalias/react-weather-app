@@ -46,7 +46,7 @@
   },
   "lint-staged": {
     "*.{tsx,ts}": [
-      "yarn lint:scripts",
+      "yarn lint",
       "yarn format",
       "git add"
     ]
