@@ -22,13 +22,11 @@ describe('useForecast', () => {
   const location: Location = { latitude: 12, longitude: 65 };
   const forecast: Forecast = {
     units: { windSpeed: 'm/s' },
-    timeseries: [
-      {
-        symbolCode: 'cloudy',
-        time: new Date('2021-03-23T21:00:00Z'),
-        details: { windSpeed: 21 },
-      },
-    ],
+    current: {
+      symbolCode: 'cloudy',
+      time: new Date('2021-03-23T21:00:00Z'),
+      details: { windSpeed: 21 },
+    },
   };
 
   test('should inform about loading information before resolved data', () => {

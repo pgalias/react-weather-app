@@ -2,22 +2,23 @@ import { AxiosResponse } from 'axios';
 import { Units } from '../../models';
 import { Forecast } from '../../models/forecast';
 import { keysToCamelCase } from '../../utils';
+import { WeatherSymbols } from '../../models/weather-symbol';
 
 type RawUnits = typeof Units[keyof typeof Units];
 
 type Summary = {
-  symbol_code: string;
+  symbol_code: WeatherSymbols;
 };
 
 type Details = Partial<Record<RawUnits, number>>;
 
-type Timeserie = {
+export type Timeserie = {
   time: string;
   data: {
     instant: {
       details: Details;
     };
-    next_1_hour: {
+    next_1_hours?: {
       summary: Summary;
     };
   };
@@ -32,11 +33,16 @@ export interface Response {
   };
 }
 
-export const responseMapper = ({ data }: AxiosResponse<Response>): Forecast => ({
-  units: keysToCamelCase(data.properties.meta.units),
-  timeseries: data.properties.timeseries.map(timeserie => ({
-    time: new Date(timeserie.time),
-    details: keysToCamelCase(timeserie.data.instant.details),
-    symbolCode: timeserie.data.next_1_hour.summary.symbol_code,
-  })),
-});
+export const responseMapper = ({ data }: AxiosResponse<Response>): Forecast => {
+  const first = data.properties.timeseries[0];
+  const currentWeather = {
+    time: new Date(first.time),
+    details: keysToCamelCase(first.data.instant.details),
+    symbolCode: first.data.next_1_hours?.summary?.symbol_code ?? undefined,
+  };
+
+  return {
+    units: keysToCamelCase(data.properties.meta.units),
+    current: currentWeather,
+  };
+};
