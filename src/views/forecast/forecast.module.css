@@ -1,5 +1,14 @@
 .forecast {
   @apply w-3/5 mx-auto border-white border-8 rounded-xl shadow-md;
+  @apply bg-no-repeat bg-cover bg-center;
 
   height: 80vh;
+}
+
+.day {
+  background-image: url('../../assets/img/clear-sky.jpg');
+}
+
+.night {
+  background-image: url('../../assets/img/star-night.jpg');
 }
