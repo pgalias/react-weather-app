@@ -1,0 +1,15 @@
+.info {
+  @apply text-blue-900 text-left my-2.5;
+}
+
+.label {
+  @apply text-gray-200 text-sm block;
+}
+
+.unit {
+  @apply text-sm pl-1.5;
+}
+
+.value {
+  @apply text-xl;
+}

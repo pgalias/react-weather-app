@@ -1,0 +1,7 @@
+.forecast {
+  @apply w-3/5 mx-auto border-white border-8 rounded-xl shadow-md;
+}
+
+.footer {
+  @apply container pt-4 bg-white grid grid-cols-2;
+}
