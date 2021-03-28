@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Forecast, Location } from '../../models';
+import { City, Forecast } from '../../models';
 import { getLocation } from '../../services/location';
 import { getForecast } from '../../services/weather';
+import { getCity } from '../../services/city';
 import {
   LocalizationException,
   LocalizationExceptionType,
@@ -9,12 +10,12 @@ import {
 import { WeatherException, WeatherExceptionType } from '../../services/weather/exceptions';
 
 type Error = LocalizationExceptionType | WeatherExceptionType;
-type ReturnType = [boolean, Forecast?, Location?, Error?];
+type ReturnType = [boolean, Forecast?, City?, Error?];
 
 export const useForecast = (): ReturnType => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [location, setLocation] = useState<Location>();
   const [forecast, setForecast] = useState<Forecast>();
+  const [city, setCity] = useState<City>();
   const [error, setError] = useState<Error>();
 
   useEffect(() => {
@@ -22,10 +23,13 @@ export const useForecast = (): ReturnType => {
       setLoading(true);
       try {
         const receivedLocation = await getLocation();
-        const receivedForecast = await getForecast(receivedLocation);
+        const [receivedForecast, receivedCity] = await Promise.all([
+          getForecast(receivedLocation),
+          getCity(receivedLocation),
+        ]);
 
-        setLocation(receivedLocation);
         setForecast(receivedForecast);
+        setCity(receivedCity);
       } catch (e) {
         if (e instanceof LocalizationException || e instanceof WeatherException) {
           setError(e.type);
@@ -38,5 +42,5 @@ export const useForecast = (): ReturnType => {
     fetchData();
   }, []);
 
-  return [loading, forecast, location, error];
+  return [loading, forecast, city, error];
 };

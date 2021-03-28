@@ -7,7 +7,7 @@ import styles from './forecast.module.css';
 import { isDay } from './services/is-day';
 
 export const Forecast: FunctionComponent = () => {
-  const [loading, forecast, location, error] = useForecast();
+  const [loading, forecast, city, error] = useForecast();
 
   const [background, setBackground] = useState<string>();
   useEffect(() => {
@@ -21,10 +21,10 @@ export const Forecast: FunctionComponent = () => {
     <div className={`${styles.forecast} ${background}`}>
       {loading && <Loader />}
       {error && <ErrorCreator error={error} />}
-      {location && forecast && (
+      {city && forecast && (
         <>
           <p className="text-sm">
-            {location?.longitude} {location?.longitude}
+            {city?.city}, {city?.state}, {city?.country}
           </p>
           <p className="text-2xl">
             {forecast.current.details.airTemperature} {forecast.units.airTemperature}

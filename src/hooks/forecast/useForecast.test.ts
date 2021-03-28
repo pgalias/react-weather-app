@@ -1,12 +1,13 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { useForecast } from './useForecast';
-import { Location, Forecast } from '../../models';
+import { Location, Forecast, City } from '../../models';
 import {
   LocalizationException,
   LocalizationExceptionType,
 } from '../../services/location/exceptions';
 import { getLocation } from '../../services/location';
 import { getForecast } from '../../services/weather';
+import { getCity } from '../../services/city';
 import { WeatherException, WeatherExceptionType } from '../../services/weather/exceptions';
 
 jest.mock('../../services/location', () => ({
@@ -15,6 +16,10 @@ jest.mock('../../services/location', () => ({
 
 jest.mock('../../services/weather', () => ({
   getForecast: jest.fn(),
+}));
+
+jest.mock('../../services/city', () => ({
+  getCity: jest.fn(),
 }));
 
 describe('useForecast', () => {
@@ -27,6 +32,11 @@ describe('useForecast', () => {
       details: { windSpeed: 21 },
     },
   };
+  const city: City = {
+    city: 'New York City',
+    country: 'United States',
+    state: 'New York',
+  };
 
   test('should inform about loading information before resolved data', () => {
     global.console.error = jest.fn(() => ''); // surpassing act warning because cannot fix it
@@ -36,15 +46,16 @@ describe('useForecast', () => {
     (global.console.error as jest.Mock).mockRestore();
   });
 
-  test('should return forecast and localization data when promises resolved', async () => {
+  test('should return forecast and city data when promises resolved', async () => {
     (getLocation as jest.Mock).mockResolvedValue(location);
     (getForecast as jest.Mock).mockResolvedValue(forecast);
+    (getCity as jest.Mock).mockReturnValue(city);
 
     const { result, waitForNextUpdate } = renderHook(() => useForecast());
 
     await waitForNextUpdate();
 
-    expect(result.current).toEqual([false, forecast, location, undefined]);
+    expect(result.current).toEqual([false, forecast, city, undefined]);
   });
 
   test('should return error when cannot resolve localization', async () => {
