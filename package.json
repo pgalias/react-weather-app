@@ -92,6 +92,7 @@
     "collectCoverageFrom": [
       "src/**/*.ts?(x)",
       "!src/index.tsx",
+      "!src/App.tsx",
       "!src/**/*.d.ts",
       "!src/reportWebVitals.ts",
       "!src/**/*.mock.ts",

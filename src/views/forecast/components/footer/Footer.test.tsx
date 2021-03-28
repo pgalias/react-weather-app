@@ -22,10 +22,8 @@ describe('Forecast::Footer', () => {
   test('should render correctly', () => {
     render(<Footer units={units} forecastDetails={details} />);
 
-    expect(screen.getByRole('footer')).toMatchSnapshot();
+    expect(screen.getByRole('list')).toMatchSnapshot();
   });
 
-  test('should contain all passed information', () => {
-    render(<Footer units={units} forecastDetails={details} />);
-  });
+  test.todo('should contain all passed information');
 });

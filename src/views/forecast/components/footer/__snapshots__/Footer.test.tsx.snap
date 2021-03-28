@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Forecast::Footer should render correctly 1`] = `
+<footer
+  class="footer"
+  role="list"
+>
+  <p
+    class="info"
+    role="listitem"
+  >
+    <span
+      class="label"
+    >
+      Pressure
+    </span>
+    <span
+      class="value"
+    >
+      1020
+    </span>
+    <span
+      class="unit"
+    >
+      hPa
+    </span>
+  </p>
+  <p
+    class="info"
+    role="listitem"
+  >
+    <span
+      class="label"
+    >
+      Humidity
+    </span>
+    <span
+      class="value"
+    >
+      70
+    </span>
+    <span
+      class="unit"
+    >
+      %
+    </span>
+  </p>
+  <p
+    class="info"
+    role="listitem"
+  >
+    <span
+      class="label"
+    >
+      Cloudiness
+    </span>
+    <span
+      class="value"
+    >
+      80
+    </span>
+    <span
+      class="unit"
+    >
+      %
+    </span>
+  </p>
+  <p
+    class="info"
+    role="listitem"
+  >
+    <span
+      class="label"
+    >
+      Wind speed
+    </span>
+    <span
+      class="value"
+    >
+      85
+    </span>
+    <span
+      class="unit"
+    >
+      %
+      <svg>
+        up-left-arrow.svg
+      </svg>
+    </span>
+  </p>
+</footer>
+`;
