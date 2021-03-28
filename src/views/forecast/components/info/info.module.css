@@ -1,5 +1,9 @@
 .info {
-  @apply text-blue-900 text-left my-2.5;
+  @apply text-blue-900 text-center sm:text-left my-2.5;
+}
+
+.info:nth-of-type(odd) {
+  @apply sm:col-span-2 md:col-span-1;
 }
 
 .label {

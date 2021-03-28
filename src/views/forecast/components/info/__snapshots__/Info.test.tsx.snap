@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`forecast::components::Info should render icon when its passed 1`] = `
+<p
+  class="info"
+  role="listitem"
+>
+  <span
+    class="label"
+  >
+    bar
+  </span>
+  <span
+    class="value"
+  >
+    80
+  </span>
+  <span
+    class="unit"
+  >
+    %
+    <svg>
+      down-arrow.svg
+    </svg>
+  </span>
+</p>
+`;
