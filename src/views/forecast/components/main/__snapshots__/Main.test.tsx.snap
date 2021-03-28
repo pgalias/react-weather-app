@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`forecast::components::Main should render passed air temperature and city info 1`] = `
+<main
+  class="main foo"
+>
+  <p
+    class="temperature"
+  >
+    20
+     °
+    C
+  </p>
+  <p
+    class="city"
+  >
+    New York City
+    , 
+    New York
+    , 
+    US
+  </p>
+</main>
+`;

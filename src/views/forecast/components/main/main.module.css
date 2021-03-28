@@ -1,0 +1,11 @@
+.main {
+  /*@apply text-yellow-100;*/
+}
+
+.temperature {
+  @apply text-4xl my-4;
+}
+
+.city {
+  @apply text-sm mb-1;
+}

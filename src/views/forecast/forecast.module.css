@@ -1,6 +1,6 @@
 .forecast {
   @apply w-3/5 mx-auto border-white border-8 rounded-xl shadow-md;
-  @apply bg-no-repeat bg-cover bg-center;
+  @apply bg-no-repeat bg-cover bg-center bg-white;
 
   height: 80vh;
 }
@@ -11,4 +11,12 @@
 
 .night {
   background-image: url('../../assets/img/star-night.jpg');
+}
+
+.dayTemp {
+    @apply text-green-900;
+}
+
+.nightTemp {
+    @apply text-yellow-100;
 }
