@@ -1,6 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { Location } from '../../models';
-import { Forecast } from '../../models/forecast';
+import { Forecast, Location } from '../../models';
 import { responseMapper } from './response-mapper';
 import { WeatherException } from './exceptions';
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Forecast } from '../../models/forecast';
+import { Forecast, Location } from '../../models';
 import { getLocation } from '../../services/location';
 import { getForecast } from '../../services/weather';
 import {
@@ -7,7 +7,6 @@ import {
   LocalizationExceptionType,
 } from '../../services/location/exceptions';
 import { WeatherException, WeatherExceptionType } from '../../services/weather/exceptions';
-import { Location } from '../../models';
 
 type Error = LocalizationExceptionType | WeatherExceptionType;
 type ReturnType = [boolean, Forecast?, Location?, Error?];

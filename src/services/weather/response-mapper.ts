@@ -1,8 +1,6 @@
 import { AxiosResponse } from 'axios';
-import { Units } from '../../models';
-import { Forecast } from '../../models/forecast';
+import { Forecast, Units, WeatherSymbols } from '../../models';
 import { keysToCamelCase } from '../../utils';
-import { WeatherSymbols } from '../../models/weather-symbol';
 
 type RawUnits = typeof Units[keyof typeof Units];
 

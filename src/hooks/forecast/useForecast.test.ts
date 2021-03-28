@@ -1,7 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { useForecast } from './useForecast';
-import { Location } from '../../models';
-import { Forecast } from '../../models/forecast';
+import { Location, Forecast } from '../../models';
 import {
   LocalizationException,
   LocalizationExceptionType,

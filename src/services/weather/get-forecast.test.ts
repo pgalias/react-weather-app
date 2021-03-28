@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { getForecast } from './get-forecast';
 import { Response, Timeserie } from './response-mapper';
-import { Forecast } from '../../models/forecast';
+import { Forecast, Location } from '../../models';
 import { WeatherException } from './exceptions';
-import { Location } from '../../models';
 
 jest.mock('axios');
 
