@@ -1,0 +1,9 @@
+.footer {
+  @apply container py-4 bg-white grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4;
+}
+
+.footer svg {
+  @apply ml-40 inline-block;
+
+  zoom: 0.03;
+}
