@@ -1,8 +1,36 @@
+@keyframes backgroundScroll {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: -180px 0;
+  }
+}
+
 .forecast {
-  @apply w-3/5 mx-auto border-white border-8 rounded-xl shadow-md;
-  @apply bg-no-repeat bg-cover bg-center bg-white;
+  @apply w-3/5 mx-auto border-white border-8 rounded-xl shadow-md relative;
+  @apply bg-repeat bg-cover bg-white;
+  @apply grid;
+
+  background-attachment: fixed;
+  animation: backgroundScroll 30s infinite;
+  animation-fill-mode: forwards;
 
   height: 80vh;
+  grid-template-rows: 1fr;
+}
+
+@screen md {
+  .forecast {
+    height: 60vh;
+  }
+}
+
+@screen lg {
+  .forecast {
+    height: 40vh;
+  }
 }
 
 .day {
@@ -14,9 +42,17 @@
 }
 
 .dayTemp {
-    @apply text-green-900;
+  @apply text-green-900;
 }
 
 .nightTemp {
-    @apply text-yellow-100;
+  @apply text-yellow-100;
+}
+
+.nonForecastElement {
+  @apply absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

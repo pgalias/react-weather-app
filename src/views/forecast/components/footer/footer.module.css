@@ -1,5 +1,23 @@
 .footer {
-  @apply container py-4 bg-white grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4;
+  @apply container py-0.5 sm:py-4 bg-white grid grid-cols-1;
+}
+
+@media screen and (min-width: 468px) {
+  .footer {
+    @apply grid-cols-2;
+  }
+}
+
+@screen sm {
+  .footer {
+    @apply grid-cols-3;
+  }
+}
+
+@screen lg {
+  .footer {
+    @apply grid-cols-4;
+  }
 }
 
 .footer svg {

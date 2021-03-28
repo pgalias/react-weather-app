@@ -15,7 +15,7 @@ export const Forecast: FunctionComponent = () => {
   const [background, setBackground] = useState<string>();
   useEffect(() => {
     if (forecast?.current?.time) {
-      const isDayNow = !isDay(forecast?.current?.time);
+      const isDayNow = isDay(forecast?.current?.time);
       setIsCurrentlyDay(isDayNow);
       setBackground(isCurrentlyDay ? styles.day : styles.night);
     }
@@ -23,8 +23,16 @@ export const Forecast: FunctionComponent = () => {
 
   return (
     <div className={`${styles.forecast} ${background}`}>
-      {loading && <Loader />}
-      {error && <ErrorCreator error={error} />}
+      {loading && (
+        <div className={styles.nonForecastElement}>
+          <Loader />
+        </div>
+      )}
+      {error && (
+        <div className={styles.nonForecastElement}>
+          <ErrorCreator error={error} />
+        </div>
+      )}
       {city && forecast && (
         <>
           <Main

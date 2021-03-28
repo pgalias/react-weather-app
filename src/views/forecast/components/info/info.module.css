@@ -1,5 +1,5 @@
 .info {
-  @apply text-blue-900 text-center sm:text-left my-2.5;
+  @apply text-blue-900 text-center my-1 sm:my-2.5;
 }
 
 .info:nth-of-type(odd) {
@@ -15,5 +15,5 @@
 }
 
 .value {
-  @apply text-xl;
+  @apply text-sm sm:text-xl;
 }
