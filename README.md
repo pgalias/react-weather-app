@@ -1,46 +1,80 @@
-# Getting Started with Create React App
+[![Build](https://github.com/pgalias/react-weather-app/actions/workflows/check-commit.yml/badge.svg?branch=master)](https://github.com/pgalias/react-weather-app/actions/workflows/check-commit.yml)
+[![codecov](https://codecov.io/gh/pgalias/react-weather-app/branch/master/graph/badge.svg)](https://codecov.io/gh/pgalias/react-weather-app)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Weather App
 
-## Available Scripts
+See application [here](https://pgalias.github.io/react-weather-app/)
 
-In the project directory, you can run:
+## Table of Contents
 
-### `yarn start`
+* [About the project](#about-the-project)
+    * [Built with](#built-with)
+* [Getting started](#getting-started)
+    * [Prerequisites](#prerequisites)
+    * [Installation](#installation)
+    * [Available commands](#available-commands)
+* [Running application](#running-application)
+* [Further changes](#further-changes)
+* [Contact](#contact)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## About the project
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![application appearance](./day-screenshot.png)
 
-### `yarn test`
+This is small user interface of weather station. It is showing current air temperature and pressure, humidity, 
+cloudiness and wind speed. It is using current user geolocation by builtin navigator functionality. Data about the 
+weather are provided by [YR API](https://developer.yr.no) and data about the city are provided by reverse geocoding from
+[Nominatim OpenStreetMap](https://nominatim.openstreetmap.org/reverse).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![application appearance](./night-screenshot.png)
 
-### `yarn build`
+### Built with
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Typescript
+- React
+- Tailwind
+- Jest
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
 
-### `yarn eject`
+To use this project there is yarn package manager needed.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Installation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To install all dependencies just run yarn command.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Available commands
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- `start` - runs dev server with HMR
+- `build` - creates the bundle
+- `test` - runs jest tests
+- `test:watch` - runs tests in watch mode
+- `lint` - runs eslint
+- `format` - runs prettier 
+- `build-to-branch` - builds application and deploy it to gh-pages branch
 
-## Learn More
+## Running application
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Run application `yarn dev`
+2. Go to `localhost:3000`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Further changes
+
+- Rather than showing an error when user refuses to use geolocation, show input to put postal code/city to fetch forecast data
+- Use symbol code from the response to show current weather status by the icon (https://api.met.no/weatherapi/weathericon/2.0/documentation)
+- Add weather information for the next hours
+- Connect the application background with the symbol code - so when it is raining then show raining background, etc.  
+- Fetch sunrise and sunset data
+- Add the rest of the todo unit tests
+
+## Contact
+
+Pawel Galias - [linkedin](https://linkedin.com/in/pawgalias) - [pawel@galias.me](pawel@galias.me)
+
+Project Link: [https://github.com/pgalias/react-weather-app](https://github.com/pgalias/react-weather-app)
+
+Project Demo: [https://pgalias.github.io/react-weather-app/](https://pgalias.github.io/react-weather-app/)
+
+Are you seeing bugs or potential improvements? Your feedback is more than welcome!
