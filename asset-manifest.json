@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "./static/css/main.da34fbf3.chunk.css",
+    "main.js": "./static/js/main.9861d8d7.chunk.js",
+    "main.js.map": "./static/js/main.9861d8d7.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.4de0cfee.js",
+    "runtime-main.js.map": "./static/js/runtime-main.4de0cfee.js.map",
+    "static/js/2.545c207d.chunk.js": "./static/js/2.545c207d.chunk.js",
+    "static/js/2.545c207d.chunk.js.map": "./static/js/2.545c207d.chunk.js.map",
+    "static/js/3.1f970c78.chunk.js": "./static/js/3.1f970c78.chunk.js",
+    "static/js/3.1f970c78.chunk.js.map": "./static/js/3.1f970c78.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.da34fbf3.chunk.css.map": "./static/css/main.da34fbf3.chunk.css.map",
+    "static/js/2.545c207d.chunk.js.LICENSE.txt": "./static/js/2.545c207d.chunk.js.LICENSE.txt",
+    "static/media/forecast.module.css": "./static/media/star-night.02ed561d.jpg",
+    "static/media/down-arrow.60e42a78.svg": "./static/media/down-arrow.60e42a78.svg",
+    "static/media/down-left-arrow.9a402015.svg": "./static/media/down-left-arrow.9a402015.svg",
+    "static/media/down-right-arrow.d8a7e334.svg": "./static/media/down-right-arrow.d8a7e334.svg",
+    "static/media/left-arrow.9d1df8bf.svg": "./static/media/left-arrow.9d1df8bf.svg",
+    "static/media/right-arrow.137c2e9f.svg": "./static/media/right-arrow.137c2e9f.svg",
+    "static/media/up-arrow.78c16100.svg": "./static/media/up-arrow.78c16100.svg",
+    "static/media/up-left-arrow.e213d52f.svg": "./static/media/up-left-arrow.e213d52f.svg",
+    "static/media/up-right-arrow.5b5bcbec.svg": "./static/media/up-right-arrow.5b5bcbec.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4de0cfee.js",
+    "static/js/2.545c207d.chunk.js",
+    "static/css/main.da34fbf3.chunk.css",
+    "static/js/main.9861d8d7.chunk.js"
+  ]
+}
